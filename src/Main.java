@@ -6,27 +6,23 @@ public class Main {
         printMenu();
         while (true) {
             Scanner scanner = new Scanner(System.in);
-            int command = scanner.nextInt();
+            String command = scanner.nextLine().trim();
             Service service = new Service();
-            switch (command) {
-                case 1:
-                    service.getAllMonthReport();
-                    break;
-                case 2:
-                    service.getYearlyReport();
-                    break;
-                case 3:
-                    service.compareReports();
-                    break;
-                case 4:
-                    service.printAllMonthlyReport();
-                    break;
-                case 5:
-                    service.printYearlyReport();
-                    break;
-                default:
-                    System.out.println("Введена неверная команда");
-                    break;
+            if ("1".equals(command)) {
+                service.getAllMonthReport();
+            } else if ("2".equals(command)) {
+                service.getYearlyReport();
+            } else if ("3".equals(command)) {
+                service.compareReports();
+            } else if ("4".equals(command)) {
+                service.printAllMonthlyReport();
+            } else if ("5".equals(command)) {
+                service.printYearlyReport();
+            } else if ("6".equals(command)) {
+                System.out.println("Вы вышли из программы");
+                return;
+            } else {
+                System.out.println("Введена неверная команда");
             }
         }
 
@@ -38,6 +34,7 @@ public class Main {
                 "3 - Сверить отчёты\n" +
                 "4 - Вывести информацию о всех месячных отчётах\n" +
                 "5 - Вывести информацию о годовом отчёте\n" +
+                "6 - exit\n" +
                 "Введите число соответсвующее требуемому действию:");
     }
 }

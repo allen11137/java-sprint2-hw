@@ -13,10 +13,10 @@ public class MonthlyReportService {
             for (int y = 1; y < content.size(); y++) {
                 String[] split = content.get(y).split(",");
                 MonthlyReport monthlyReport = new MonthlyReport();
-                monthlyReport.setItem_name(split[0]);
-                monthlyReport.setIs_expense(split[1].equalsIgnoreCase("true"));
+                monthlyReport.setItemName(split[0]);
+                monthlyReport.setExpense(split[1].equalsIgnoreCase("true"));
                 monthlyReport.setQuantity(Integer.parseInt(split[2]));
-                monthlyReport.setSum_of_one(Integer.parseInt(split[3]));
+                monthlyReport.setSumOfOne(Integer.parseInt(split[3]));
                 monthlyReports.add(monthlyReport);
             }
             reports.put("m.20210" + i + ".csv", monthlyReports);

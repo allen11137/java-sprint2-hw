@@ -13,7 +13,7 @@ public class YearlyReportService {
             YearlyReport yearlyReport = new YearlyReport();
             yearlyReport.setMonth(Integer.parseInt(split[0]));
             yearlyReport.setAmount(Integer.parseInt(split[1]));
-            yearlyReport.setIs_expense(split[2].equalsIgnoreCase("true"));
+            yearlyReport.setExpense(split[2].equalsIgnoreCase("true"));
             reports.add(yearlyReport);
         }
         report.put("y.2021.csv", reports);

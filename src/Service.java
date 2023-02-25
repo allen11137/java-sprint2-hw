@@ -19,10 +19,22 @@ public class Service {
     }
 
     public void compareReports() {
-        reportsCompareService.compareReports(monthlyReports, yearlyReport);
+        if (monthlyReports.size() > 0 && yearlyReport.size() > 0) {
+            reportsCompareService.compareReports(monthlyReports, yearlyReport);
+        } else {
+            System.out.println("Не хватает данных. Необходимо загрузить оба отчета.");
+        }
     }
 
     public void printAllMonthlyReport() {
+        if (monthlyReports.size() > 0 && yearlyReport.size() > 0) {
+            printReports();
+        } else {
+            System.out.println("Не хватает данных. Необходимо загрузить оба отчета.");
+        }
+    }
+
+    private void printReports() {
         for (int i = 1; i < 4; i++) {
             List<MonthlyReport> monthlyReports = Service.monthlyReports.get("m.20210" + i + ".csv");
             System.out.println("Месяц: " + i);
@@ -31,14 +43,14 @@ public class Service {
             String itemIncome = "";
             String itemExpenses = "";
             for (MonthlyReport mR : monthlyReports) {
-                int summ = mR.getQuantity() * mR.getSum_of_one();
-                if (!mR.isIs_expense() && maxIncome < summ) {
+                int summ = mR.getQuantity() * mR.getSumOfOne();
+                if (!mR.isExpense() && maxIncome < summ) {
                     maxIncome = summ;
-                    itemIncome = mR.getItem_name();
+                    itemIncome = mR.getItemName();
                 }
-                if (mR.isIs_expense() && maxExpense < summ) {
+                if (mR.isExpense() && maxExpense < summ) {
                     maxExpense = summ;
-                    itemExpenses = mR.getItem_name();
+                    itemExpenses = mR.getItemName();
                 }
             }
             System.out.println("Самый прибыльный товар: " + itemIncome + ". Суммарный заработок: " + maxIncome);
@@ -47,17 +59,21 @@ public class Service {
     }
 
     public void printYearlyReport() {
-        System.out.println("Рассматриваемый год : 2021");
-        List<YearlyReport> reports = yearlyReport.get("y.2021.csv");
-        everyMonthProfit(reports);
-        middleExpenses(reports);
-        middleIncome(reports);
+        if (monthlyReports.size() > 0 && yearlyReport.size() > 0) {
+            System.out.println("Рассматриваемый год : 2021");
+            List<YearlyReport> reports = yearlyReport.get("y.2021.csv");
+            everyMonthProfit(reports);
+            middleExpenses(reports);
+            middleIncome(reports);
+        } else {
+            System.out.println("Не хватает данных. Необходимо загрузить оба отчета.");
+        }
     }
 
     private void middleIncome(List<YearlyReport> reports) {
         int income = 0;
         for (YearlyReport y : reports) {
-            if (!y.isIs_expense()) {
+            if (!y.isExpense()) {
                 income += y.getAmount();
             }
         }
@@ -68,7 +84,7 @@ public class Service {
     private void middleExpenses(List<YearlyReport> reports) {
         int expenses = 0;
         for (YearlyReport y : reports) {
-            if (y.isIs_expense()) {
+            if (y.isExpense()) {
                 expenses += y.getAmount();
             }
         }
@@ -87,7 +103,7 @@ public class Service {
                 profit = 0;
             }
             month = reports.get(i).getMonth();
-            if (!reports.get(i).isIs_expense()) {
+            if (!reports.get(i).isExpense()) {
                 profit = reports.get(i).getAmount();
             } else {
                 profit -= reports.get(i).getAmount();

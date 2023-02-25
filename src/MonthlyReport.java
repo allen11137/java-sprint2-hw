@@ -1,24 +1,24 @@
 
 class MonthlyReport {
-    private String item_name;
-    private boolean is_expense;
+    private String itemName;
+    private boolean isExpense;
     private int quantity;
-    private int sum_of_one;
+    private int sumOfOne;
 
-    public String getItem_name() {
-        return item_name;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setItem_name(String item_name) {
-        this.item_name = item_name;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
-    public boolean isIs_expense() {
-        return is_expense;
+    public boolean isExpense() {
+        return isExpense;
     }
 
-    public void setIs_expense(boolean is_expense) {
-        this.is_expense = is_expense;
+    public void setExpense(boolean expense) {
+        this.isExpense = expense;
     }
 
     public int getQuantity() {
@@ -29,21 +29,21 @@ class MonthlyReport {
         this.quantity = quantity;
     }
 
-    public int getSum_of_one() {
-        return sum_of_one;
+    public int getSumOfOne() {
+        return sumOfOne;
     }
 
-    public void setSum_of_one(int sum_of_one) {
-        this.sum_of_one = sum_of_one;
+    public void setSumOfOne(int sumOfOne) {
+        this.sumOfOne = sumOfOne;
     }
 
     @Override
     public String toString() {
         return "MonthlyReport{" +
-                "item_name='" + item_name + '\'' +
-                ", is_expense=" + is_expense +
+                "item_name='" + itemName + '\'' +
+                ", is_expense=" + isExpense +
                 ", quantity=" + quantity +
-                ", sum_of_one=" + sum_of_one +
+                ", sum_of_one=" + sumOfOne +
                 '}';
     }
 }

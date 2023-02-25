@@ -2,7 +2,7 @@
 class YearlyReport {
     private int month;
     private int amount;
-    private boolean is_expense;
+    private boolean isExpense;
 
     public int getMonth() {
         return month;
@@ -20,12 +20,12 @@ class YearlyReport {
         this.amount = amount;
     }
 
-    public boolean isIs_expense() {
-        return is_expense;
+    public boolean isExpense() {
+        return isExpense;
     }
 
-    public void setIs_expense(boolean is_expense) {
-        this.is_expense = is_expense;
+    public void setExpense(boolean expense) {
+        this.isExpense = expense;
     }
 
     @Override
@@ -33,7 +33,7 @@ class YearlyReport {
         return "YearlyReport{" +
                 "month=" + month +
                 ", amount=" + amount +
-                ", is_expense=" + is_expense +
+                ", is_expense=" + isExpense +
                 '}';
     }
 }
